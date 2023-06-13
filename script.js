@@ -7,12 +7,12 @@ const questionElement = document.getElementById('question');
 const answerChoices = document.getElementById('choice');
 const displayAnswer = document.getElementById('answer');
 const startButton = document.getElementById("startbutton");
-
+let intervalId;
 
 //variables for timer
 
-const countDown = 60;
-const currentIndex = 0;
+let countDown = 60;
+let currentIndex = 0;
 
 //what user first sees when opening webpage 
 
@@ -79,6 +79,27 @@ const displayQuestion = function(){
 
 //function to see if answer is correct or not?
 
+const checkAnswer = function(inputAnswer) {
+    const currentQuestion = quizQuestions[currentIndex];
+    console.log(inputAnswer, currentQuestion.answer);
+    if(inputAnswer === currentQuestion.answer) {
+        answer.textContent = "Yes! Correct!";
+    } else {
+        countDown -= 10;
+        answerChoices.textContent = "OH, NO! Incorrect";
+    };
+
+    //next question
+    currentIndex++;
+
+    if(currentIndex >= quizQuestions.length){
+        endGame();
+    } else {
+        displayQuestion();
+    };
+    };
+
+
 //function for start game button
 const startQuiz = function (){
     //gets rid of intial content
@@ -94,17 +115,35 @@ const startQuiz = function (){
 
             if(countDown <= 0) {
                 timeClock.textContent = "OOPS! Time is up!"
-            }
+                endGame();
+            };
 
-        })
-    }
+        }, 1000);
+    };
+    // countdown();
+    displayQuestion();
+};
+
+//function to end game
+
+function endGame() {
+    const button = document.createElement("button");
+    clearInterval(intervalId);
+    if(countDown >= 1){
+        timeClock.textContent = "Time: " + countDown + " seconds left";
+        questionElement.textContent = "GREAT JOB! You finished the quiz.";
+        answerChoices.textContent = "Your final score is: " + countDown + " point(s)";
+    } else {
+        questionElement.textContent = "Sorry! You did not finish the quiz in time.";
+        answerChoices.textContent = "Your final score is: " + countDown + " point(s)";
+    };
 }
-//eventlistener for start button
 
+//eventlistener for start button
 startButton.addEventListener("click", function() {
     startQuiz();
     console.log("click")
-})
+});
 
 //event listener for highschore button
 
