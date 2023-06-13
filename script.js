@@ -11,7 +11,8 @@ const startButton = document.getElementById("startbutton");
 
 //variables for timer
 
-// const countDown = 
+const countDown = 60;
+const currentIndex = 0;
 
 //what user first sees when opening webpage 
 
@@ -59,11 +60,29 @@ const quizQuestions = [
 ]
 //display question function
 
+const displayQuestion = function(){
+    const currentQuestion = quizQuestions[currentIndex];
+    questionElement.textContent = currentQuestion.question;
+
+    answerChoices.textContent = "";
+    currentQuestion.choices.forEach(function(choice){
+        const button = document.createElement("button");
+        button.textContent = choice;
+        answerChoices.appendChild(button);
+
+          // Attach an event listener to each answer choice button so that when the user clicks a button, it calls the checkAnswer function.
+          button.addEventListener("click", function() {
+            checkAnswer(choice);
+        });
+    })
+}
+
 //function to see if answer is correct or not?
 
 //function for start game button
 let startQuiz = function (){
-
+    //gets rid of intial content
+    
 }
 //eventlistener for start button
 
@@ -77,3 +96,6 @@ startButton.addEventListener("click", function() {
 // highScore.addEventListener("click", function(){
 
 // });
+
+
+
