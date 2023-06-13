@@ -14,6 +14,8 @@ let intervalId;
 let countDown = 60;
 let currentIndex = 0;
 
+headerElement.setAttribute("style", "font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif display: flex; flex-direction: row; justify-content: space-between; color: pink;")
+
 //what user first sees when opening webpage 
 
 questionElement.textContent = "Welcome to the Coding Quiz Challenge!";
@@ -61,12 +63,12 @@ const quizQuestions = [
 //display question function
 
 const displayQuestion = function(){
-    const currentQuestion = quizQuestions[currentIndex];
+    let currentQuestion = quizQuestions[currentIndex];
     questionElement.textContent = currentQuestion.question;
 
     answerChoices.textContent = "";
     currentQuestion.choices.forEach(function(choice){
-        const button = document.createElement("button");
+        let button = document.createElement("button");
         button.textContent = choice;
         answerChoices.appendChild(button);
 
@@ -79,7 +81,7 @@ const displayQuestion = function(){
 
 //function to see if answer is correct or not?
 
-const checkAnswer = function(inputAnswer) {
+let checkAnswer = function(inputAnswer) {
     const currentQuestion = quizQuestions[currentIndex];
     console.log(inputAnswer, currentQuestion.answer);
     if(inputAnswer === currentQuestion.answer) {
@@ -127,7 +129,7 @@ const startQuiz = function (){
 //function to end game
 
 function endGame() {
-    const button = document.createElement("button");
+    // const button = document.createElement("button");
     clearInterval(intervalId);
     if(countDown >= 1){
         timeClock.textContent = "Time: " + countDown + " seconds left";
@@ -145,7 +147,15 @@ startButton.addEventListener("click", function() {
     console.log("click")
 });
 
+
+// highscore function
+
+
 //event listener for highschore button
+
+// highScore.addEventListener("click", function(){
+//     renderHighScore();
+// })
 
 // highScore.addEventListener("click", function(){
 
