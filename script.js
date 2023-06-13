@@ -80,9 +80,24 @@ const displayQuestion = function(){
 //function to see if answer is correct or not?
 
 //function for start game button
-let startQuiz = function (){
+const startQuiz = function (){
     //gets rid of intial content
-    
+    questionElement.textContent = "";
+    answerChoices.textContent = "";
+    startButton.style.display = "none";
+
+    //starts timer
+    const timerStart = function() {
+        intervalId = setInterval(function() {
+            countDown--;
+            timeClock.textContent = "Time: " + countDown + " seconds left";
+
+            if(countDown <= 0) {
+                timeClock.textContent = "OOPS! Time is up!"
+            }
+
+        })
+    }
 }
 //eventlistener for start button
 
