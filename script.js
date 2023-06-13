@@ -1,6 +1,17 @@
-// declare gloable variables
+// declare global variables
+const headerElement = document.querySelector("header");
+const highScore = document.getElementById('hs');
+const timeClock = document.getElementById('timer');
+const displayQuiz = document.getElementById('quiz');
+const questionElement = document.getElementById('question');
+const answerChoices = document.getElementById('choice');
+const displayAnswer = document.getElementById('answer');
+const startButton = document.getElementById("startbutton");
+
 
 //variables for timer
+
+const countDown = ;
 
 //quiz question array
 const quizQuestions = [
