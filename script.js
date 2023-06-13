@@ -11,7 +11,7 @@ const startButton = document.getElementById("startbutton");
 
 //variables for timer
 
-const countDown = ;
+// const countDown = 
 
 //quiz question array
 const quizQuestions = [
@@ -56,7 +56,18 @@ const quizQuestions = [
 //function to see if answer is correct or not?
 
 //function for start game button
+let startQuiz = function (){
 
+}
 //eventlistener for start button
 
+startButton.addEventListener("click", function() {
+    startQuiz();
+    console.log("click")
+})
+
 //event listener for highschore button
+
+// highScore.addEventListener("click", function(){
+
+// });
