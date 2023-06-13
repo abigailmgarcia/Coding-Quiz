@@ -13,6 +13,12 @@ const startButton = document.getElementById("startbutton");
 
 // const countDown = 
 
+//what user first sees when opening webpage 
+
+questionElement.textContent = "Welcome to the Coding Quiz Challenge!";
+answerChoices.textContent = "This is a game to test your coding knowledge. Once you press the start button you will be prompted with a series of questions. Note, you are timed and the more answers you get wrong, the less time you have! Good luck!";
+startButton.textContent = "START";
+
 //quiz question array
 const quizQuestions = [
     {
