@@ -1,6 +1,6 @@
 // declare global variables
 const headerElement = document.querySelector("header");
-const highScore = document.getElementById('hs');
+const highScoreElement = document.getElementById('hs');
 const timeClock = document.getElementById('timer');
 const displayQuiz = document.getElementById('quiz');
 const questionElement = document.getElementById('question');
@@ -172,9 +172,12 @@ startButton.addEventListener("click", function() {
          let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
     const HighScoresList = document.getElementById("highscores-list");
 
+        HighScoresList.innerHTML = "";
+
     highScores.forEach(function(highScore) {
 
-        let highScoreItem = document.createElement('ol');highScoreItem.textContent = "Initials:" + highScore.initials + "Score:" + highScore.score;
+        let highScoreItem = document.createElement('ol');
+        highScoreItem.textContent = "Initials:" + highScore.initials + "Score:" + highScore.score;
 
         HighScoresList.appendChild(highScoreItem);
 
@@ -182,7 +185,7 @@ startButton.addEventListener("click", function() {
     });
 };
 
-    highScore.addEventListener("click", function(){
+    highScoreElement.addEventListener("click", function(){
         renderHighScores();
     });
 
@@ -195,11 +198,15 @@ startButton.addEventListener("click", function() {
       return;
 };
 
-    renderHighScores();
+    
 let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 highScores.push({ initials, score: countDown });
-localStorage.setItem("highScores", JSON.stringify(highScore));
+highScores.sort((a, b) => b.score - a.score);
+localStorage.setItem("highScores", JSON.stringify(highScores));
+alert("Your score has been saved!")
 
+initialsInput.value = "";
+renderHighScores();
 });
 
 
