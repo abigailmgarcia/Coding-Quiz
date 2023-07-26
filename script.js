@@ -64,7 +64,8 @@ const quizQuestions = [
         choices: ["duh it's all code", "no, I wish"],
         answer: "no, I wish",
     },
-]
+];
+
 //display question function
 
 const displayQuestion = function(){
@@ -76,6 +77,10 @@ const displayQuestion = function(){
         let button = document.createElement("button");
         button.textContent = choice;
         answerChoices.appendChild(button);
+
+        answerChoices.setAttribute("style", "display: flex; flex-direction: column; justify-content: center; align-items: center;");
+        button.setAttribute("style", "background-color: green; color: white; border-radius: 25px; margin: 10px;");
+
 
           // Attach an event listener to each answer choice button so that when the user clicks a button, it calls the checkAnswer function.
           button.addEventListener("click", function() {
@@ -122,7 +127,7 @@ const startQuiz = function (){
 
             if(countDown <= 0) {
                 timeClock.textContent = "OOPS! Time is up!"
-                clearInterval(intervalId);
+                // clearInterval(intervalId);
                 endGame();
             };
 
@@ -136,7 +141,7 @@ const startQuiz = function (){
 
 function endGame() {
     const button = document.createElement("button");
-    // clearInterval(intervalId);
+    clearInterval(intervalId);
     if(countDown >= 1){
         timeClock.textContent = "Time: " + countDown + " seconds left";
         questionElement.textContent = "GREAT JOB! You finished the quiz.";
@@ -167,9 +172,12 @@ startButton.addEventListener("click", function() {
          let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
     const HighScoresList = document.getElementById("highscores-list");
 
-    highScores.forEach(function(highScore, x ) {
-        let highScoreItem = document.createElement('ol');highScoreItem.textContent = "highScore:" + highScore.score + "initials:" + highScore.initials;
-     HighScoresList.appendChild(highScoreItem);
+    highScores.forEach(function(highScore) {
+
+        let highScoreItem = document.createElement('ol');highScoreItem.textContent = "Initials:" + highScore.initials + "Score:" + highScore.score;
+
+        HighScoresList.appendChild(highScoreItem);
+
         console.log(highScore);
     });
 };
@@ -185,8 +193,9 @@ startButton.addEventListener("click", function() {
     if (initials === "") {
       alert("Please enter your initials.");
       return;
-}
+};
 
+    renderHighScores();
 let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 highScores.push({ initials, score: countDown });
 localStorage.setItem("highScores", JSON.stringify(highScore));
