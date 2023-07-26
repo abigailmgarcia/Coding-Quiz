@@ -18,7 +18,7 @@ let currentIndex = 0;
 // style
 headerElement.setAttribute("style", "font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif display: flex; flex-direction: row; justify-content: space-between; color: pink;")
 answerChoices.setAttribute("style", "display: flex; flex-direction: column; justify-content:center; align-items:center;");
-startButton.setAttribute("style", "background-color: green; color: white; border-radius: 25px; margin: 10px;");
+startButton.setAttribute("style", "background-color: pink; color: black; border-radius: 25px; margin: 10px;");
 displayQuiz.setAttribute("style", "font-family: Arial, sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center;");
 
 //what user first sees when opening webpage 
@@ -79,7 +79,7 @@ const displayQuestion = function(){
         answerChoices.appendChild(button);
 
         answerChoices.setAttribute("style", "display: flex; flex-direction: column; justify-content: center; align-items: center;");
-        button.setAttribute("style", "background-color: green; color: white; border-radius: 25px; margin: 10px;");
+        button.setAttribute("style", "background-color: pink; color: black; border-radius: 25px; margin: 10px;");
 
 
           // Attach an event listener to each answer choice button so that when the user clicks a button, it calls the checkAnswer function.
@@ -98,7 +98,7 @@ let checkAnswer = function(inputAnswer) {
         answer.textContent = "Yes! Correct!";
     } else {
         countDown -= 10;
-        answerChoices.textContent = "OH, NO! Incorrect";
+        answer.textContent = "OH, NO! Incorrect";
     };
 
     //next question
