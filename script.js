@@ -16,6 +16,8 @@ let countDown = 60;
 let currentIndex = 0;
 
 headerElement.setAttribute("style", "font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif display: flex; flex-direction: row; justify-content: space-between; color: pink;")
+answerChoices.setAttribute("style", "display: flex; flex-direction: column; justify-content:center; align-items:center;");
+startButton.setAttribute("style", "background-color: green; color: white; border-radius: 25px; margin: 10px;");
 
 //what user first sees when opening webpage 
 
@@ -171,6 +173,11 @@ formEl.addEventListener("submit", function(event) {
     highScores.push({ initials, score: countDown });
     localStorage.setItem("highScores", JSON.stringify(highScores));
     // Redirect to high scores page or display high scores on current page
-
+    const HighScoresList = document.getElementById("highscores-list");
+    highScores.forEach(function(highScore) {
+        let highScoreItem = document.createElement('ol').textContent = "highScore:" + highScores.score;
+        HighScoresList.appendChild(highScoreItem);
+        console.log(highScore);
+    });
 
 });
