@@ -7,6 +7,7 @@ const questionElement = document.getElementById('question');
 const answerChoices = document.getElementById('choice');
 const displayAnswer = document.getElementById('answer');
 const startButton = document.getElementById("startbutton");
+const formEl = document.createElement("form");
 let intervalId;
 
 //variables for timer
@@ -117,20 +118,21 @@ const startQuiz = function (){
 
             if(countDown <= 0) {
                 timeClock.textContent = "OOPS! Time is up!"
+                clearInterval(intervalId);
                 endGame();
             };
 
         }, 1000);
     };
-    // countdown();
+    timerStart();
     displayQuestion();
 };
 
 //function to end game
 
 function endGame() {
-    // const button = document.createElement("button");
-    clearInterval(intervalId);
+    const button = document.createElement("button");
+    // clearInterval(intervalId);
     if(countDown >= 1){
         timeClock.textContent = "Time: " + countDown + " seconds left";
         questionElement.textContent = "GREAT JOB! You finished the quiz.";
@@ -139,6 +141,14 @@ function endGame() {
         questionElement.textContent = "Sorry! You did not finish the quiz in time.";
         answerChoices.textContent = "Your final score is: " + countDown + " point(s)";
     };
+    //user enter their initails 
+    formEl.innerHTML = `
+    <label for='initials'>Enter your initials:
+    </label>
+    <input type='text' id='initials' name='initials'></input>
+    <button type='sumbit'>Save Score</button>
+    `;
+    displayQuiz.appendChild(formEl);
 }
 
 //eventlistener for start button
@@ -148,18 +158,19 @@ startButton.addEventListener("click", function() {
 });
 
 
-// highscore function
+// Add an event listener to the form that saves the score to local storage.
+formEl.addEventListener("submit", function(event) {
+    event.preventDefault();
+    const initialsInput = document.getElementById("initials");
+    const initials = initialsInput.value.trim();
+    if (initials === "") {
+      alert("Please enter your initials.");
+      return;
+    }
+    let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+    highScores.push({ initials, score: countDown });
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+    // Redirect to high scores page or display high scores on current page
 
 
-//event listener for highschore button
-
-// highScore.addEventListener("click", function(){
-//     renderHighScore();
-// })
-
-// highScore.addEventListener("click", function(){
-
-// });
-
-
-
+});
